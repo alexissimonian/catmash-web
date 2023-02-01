@@ -5,13 +5,15 @@ import {CatMashApiServices} from "../../../services/cat-mash-api.services";
 @Component({
   selector: 'score-board-component',
   templateUrl: './score-board.component.html',
-  styleUrls: ['./score-board.component.html']
+  styleUrls: ['./score-board.component.scss']
 })
 
 export class ScoreBoardComponent implements OnInit
 {
   localScoreBoard: CatScore[] = [];
   allCatScores:CatScore[] = [];
+  isLocalScoreEmpty = true;
+  isLocalButtonSelected = false;
 
   constructor(private catMashService: CatMashApiServices) {
   }
@@ -33,6 +35,8 @@ export class ScoreBoardComponent implements OnInit
       this.localScoreBoard.push(newCatScore);
     }
 
+    this.isLocalButtonSelected = true;
+    this.isLocalScoreEmpty = false;
     this.localScoreBoard = this.localScoreBoard.sort((a, b) => a.score >= b.score ? -1: 1);
   }
 
@@ -45,14 +49,30 @@ export class ScoreBoardComponent implements OnInit
       return catScoreRequest
     });
     let response = this.catMashService.shareCatScores(request).subscribe();
+    this.getAllCatScores();
+    this.resetLocalScoreBoard();
+  }
+
+  onOnlineButtonSelected(){
+    this.isLocalButtonSelected = false;
+  }
+
+  onLocalButtonSelected(){
+    this.isLocalButtonSelected = true;
   }
 
   private getAllCatScores(): void {
     this.catMashService.getAllCatsScores().subscribe({
       next: (res) => {
         this.allCatScores = res;
-        this.allCatScores = this.allCatScores.sort((a, b) => a.score >= b.score ? -1: 1);
+        this.allCatScores = this.allCatScores.sort((a, b) => a.score >= b.score ? -1 : 1);
       }
     })
+  }
+
+  private resetLocalScoreBoard(){
+    this.localScoreBoard = [];
+    this.isLocalButtonSelected = false;
+    this.isLocalScoreEmpty = true;
   }
 }

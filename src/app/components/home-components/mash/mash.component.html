@@ -1,19 +1,18 @@
-<div>
-  <h1 class="mash__title">{{title}}</h1>
+<div class="mash__all-content">
+  <h1 class="mash__title">{{title}}®</h1>
   <div *ngIf="currentDisplayedCats" class="mash__content">
     <div class="mash__cats">
       <div class="mash__first-cat">
-        <a (click)="onCatChosen(currentDisplayedCats[0])">
-          <img [src]="currentDisplayedCats[0].url">
+        <a class="mash__image-container" (click)="onCatChosen(currentDisplayedCats[0])">
+          <img class="img-thumbnail" [src]="currentDisplayedCats[0].url">
         </a>
       </div>
       <div class="mash__second-cat">
-        <a (click)="onCatChosen(currentDisplayedCats[1])">
+        <a class="mash__image-container" (click)="onCatChosen(currentDisplayedCats[1])">
           <img [src]="currentDisplayedCats[1].url">
         </a>
       </div>
     </div>
     <score-board-component class="mash__score-board"></score-board-component>
-    <button class="btn btn-primary mash__online-ranking" (click)="goToGlobalRanking()">Voir classement en ligne</button>
   </div>
 </div>

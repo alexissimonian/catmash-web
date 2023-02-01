@@ -1,0 +1,33 @@
+.sb__score-board {
+  height: min-content;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+.sb__commands {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  .sb__button-send{
+    margin-left: 10px;
+    align-self: flex-end;
+  }
+}
+
+td img {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline;
+}
+
+td {
+  font-weight: bold;
+  font-size: 30px;
+  padding: 20px;
+}

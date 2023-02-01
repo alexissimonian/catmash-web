@@ -1,9 +1,25 @@
-<div *ngIf="localScoreBoard.length > 0">
-  <table class="table-bordered">
-    <tr *ngFor="let score of localScoreBoard">
-      <td><img [src]="score.url"/></td>
-      <td>{{score.score}}</td>
-    </tr>
-  </table>
-  <button type="button" class="btn btn-primary" (click)="saveBoard()">Partager</button>
+<div class="card sb__score-board">
+  <div class="card-body">
+    <div class="sb__commands">
+      <div class="btn-group" role="group">
+        <button [ngClass]="{'btn btn-primary': true, 'active': isLocalButtonSelected}" (click)="onLocalButtonSelected()" [disabled]="isLocalScoreEmpty">Local</button>
+        <button [ngClass]="{'btn btn-primary': true, 'active': !isLocalButtonSelected}" (click)="onOnlineButtonSelected()">Online</button>
+      </div>
+      <button *ngIf="isLocalButtonSelected" class="btn btn-primary sb__button-send" (click)="saveBoard()" [disabled]="isLocalScoreEmpty">Envoyer</button>
+    </div>
+    <table class="sb__table table-borderless">
+      <div *ngIf="isLocalButtonSelected; else onlineButtonSelected">
+        <tr *ngFor="let score of localScoreBoard">
+          <td><img [src]="score.url"/></td>
+          <td><p>{{score.score}}</p></td>
+        </tr>
+      </div>
+      <ng-template #onlineButtonSelected>
+        <tr *ngFor="let score of allCatScores">
+          <td><img [src]="score.url"/></td>
+          <td>{{score.score}}</td>
+        </tr>
+      </ng-template>
+    </table>
+  </div>
 </div>

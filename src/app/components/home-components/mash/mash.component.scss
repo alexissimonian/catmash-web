@@ -1,20 +1,70 @@
 .mash__content {
   display: grid;
-  grid-gap: 8px;
-  grid-template-columns: max-content min-content;
-  grid-template-rows: repeat(2, auto);
-  grid-template-areas:  "mashes ranking"
-                        "online-button online-button";
+  height: 85vh;
+  grid-template-columns: minmax(50%, 75%) minmax(270px, 20%);
+  grid-template-areas:  "mashes ranking";
+  padding: 10px;
 
   .mash__cats {
     grid-area: mashes;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    justify-items: center;
+
+    div{
+      width: 450px;
+      height: 450px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    a:hover{
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    img{
+      object-fit: cover;
+      display: inline;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .mash__score-board {
     grid-area: ranking;
   }
 
-  .mash__online-ranking {
-    grid-area: online-button;
+  @media screen and (max-width: 1370px){
+    .mash__cats {
+      div{
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .mash__cats {
+        margin: 50px;
+      }
+
+      @media screen and (max-width: 690px) {
+        .mash__cats {
+          grid-template-columns:auto;
+          grid-gap: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px){
+  .mash__content{
+    grid-template-columns: minmax(auto, 300px);
+    grid-template-areas:  "mashes"
+                          "ranking";
+    grid-gap: 20px;
   }
 }
