@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div *ngIf="localScoreBoard.length > 0">
+  <table class="table-bordered">
+    <tr *ngFor="let score of localScoreBoard">
+      <td><img [src]="score.url"/></td>
+      <td>{{score.score}}</td>
+    </tr>
+  </table>
+  <button type="button" class="btn btn-primary" (click)="saveBoard()">Partager</button>
+</div>

@@ -1,0 +1,20 @@
+.mash__content {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: max-content min-content;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:  "mashes ranking"
+                        "online-button online-button";
+
+  .mash__cats {
+    grid-area: mashes;
+  }
+
+  .mash__score-board {
+    grid-area: ranking;
+  }
+
+  .mash__online-ranking {
+    grid-area: online-button;
+  }
+}

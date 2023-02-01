@@ -1,4 +1,4 @@
 export class Cat {
-  id?: string;
-  url?: string;
+  id!: string;
+  url!: string;
 }
