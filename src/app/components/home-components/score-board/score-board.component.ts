@@ -50,7 +50,6 @@ export class ScoreBoardComponent implements OnInit
     });
     let response = this.catMashService.shareCatScores(request).subscribe();
     this.getAllCatScores();
-    this.resetLocalScoreBoard();
   }
 
   onOnlineButtonSelected(){
@@ -66,13 +65,17 @@ export class ScoreBoardComponent implements OnInit
       next: (res) => {
         this.allCatScores = res;
         this.allCatScores = this.allCatScores.sort((a, b) => a.score >= b.score ? -1 : 1);
+        this.resetLocalScoreBoard();
       }
     })
   }
 
   private resetLocalScoreBoard(){
+    if(this.localScoreBoard.length == 0)
+      return;
     this.localScoreBoard = [];
     this.isLocalButtonSelected = false;
     this.isLocalScoreEmpty = true;
+    location.reload();
   }
 }
