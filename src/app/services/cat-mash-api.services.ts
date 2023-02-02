@@ -3,8 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Cat, CatScore, CatScoreRequest} from "src/app/models";
 import {Observable} from "rxjs";
 
-//const baseUrl = "https://webapp-230201195100.azurewebsites.net/api/catmash";
-const baseUrl = "https://localhost:7161/api/catmash";
+const baseUrl = "https://webapp-230201195100.azurewebsites.net/api/catmash";
 
 @Injectable()
 export class CatMashApiServices{
